@@ -105,3 +105,6 @@ dist
 
 # Idea folder
 .idea
+
+# Temporarily ignored documentation
+docs

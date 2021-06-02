@@ -1,0 +1,5 @@
+{
+  "serverPort": 5000,
+  "dbUrl": "mongodb+srv://nazar:CYCITVpN6Uu0MpWN@cluster0.lgzpx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "secretKey": "server-secret_key"
+}
