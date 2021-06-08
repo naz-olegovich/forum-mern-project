@@ -12,7 +12,7 @@ const Navbar = () => {
     const isAuth = useSelector(state => state.user.isAuth)
     const dispatch = useDispatch()
     return (
-        <AppBar position="static">
+        <AppBar position='sticky'>
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
                     Forum App

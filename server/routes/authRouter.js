@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/auth.middleware.js')
 const router = new Router();
 router.post('/registration',
     [
-        check('userName', 'Username must be longer than 2 symbols').isLength({ min: 2 }),
+        check('username', 'Username must be longer than 2 symbols').isLength({ min: 2 }),
         check('email', 'Incorrect email').isEmail(),
         check('password', 'Password must be longer than 4 symbols').isLength({ min: 4 })
     ], authController.registration)

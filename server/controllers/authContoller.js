@@ -13,21 +13,26 @@ class AuthController {
                 return res.status(400).json({ message: 'Incorrect request', errors })
             }
 
-            const { userName, email, password } = req.body;
-            const candidate = await User.findOne({ email });
+            const { username, email, password } = req.body;
+
+            const candidate = await User.findOne({ $or: [{ email }, { username }] });
             if (candidate) {
-                return res.status(400).json({ message: `User with email ${email} already exist` })
+                const existingData = (candidate.email === email) ? `email [${email}]` : `username [${username}]`
+                return res.status(400).json({ message: `User with such ${existingData} already exist` })
             }
 
             const hashPassword = await bcrypt.hash(password, 7)
-            const user = new User({ userName, email, password: hashPassword })
+            const user = new User({ username, email, password: hashPassword })
             await user.save()
-            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1h" })
+
+            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "24h" })
             return res.json({
                 token,
                 user: {
                     id: user.id,
                     email: user.email,
+                    username: user.username,
+                    topics: user.topics
                 }
             })
 
@@ -48,12 +53,14 @@ class AuthController {
             if (!isPassValid) {
                 return res.status(400).json({ message: "Invalid password" })
             }
-            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1h" })
+            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "24h" })
             return res.json({
                 token,
                 user: {
                     id: user.id,
                     email: user.email,
+                    username: user.username,
+                    topics: user.topics
                 }
             })
         } catch (e) {
@@ -65,13 +72,15 @@ class AuthController {
     async auth(req, res) {
         try {
             const user = await User.findOne({ _id: req.user.id })
-            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "1h" })
+            const token = jwt.sign({ id: user.id }, config.get("secretKey"), { expiresIn: "24h" })
 
             return res.json({
                 token,
                 user: {
                     id: user.id,
                     email: user.email,
+                    username: user.username,
+                    topics: user.topics
                 }
             })
         } catch (e) {

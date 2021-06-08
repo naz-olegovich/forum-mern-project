@@ -3,18 +3,22 @@ import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {auth} from "./actions/user.js";
 
+
 import Navbar from "./componets/navbar/Navbar";
 import Auth from "./componets/authorization/Auth";
-import TopicList from "./componets/topics/topicList";
+import TopicList from "./componets/topicsList/TopicList";
+import TopicDetails from "./componets/topicDetails/TopicDetails";
 
 function App() {
     const isAuth = useSelector(state => state.user.isAuth);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(auth())
-    }, [])
+        setTimeout(()=>{
+            dispatch(auth())
+        }, 1000)
 
+    }, [dispatch])
 
     return (
         <BrowserRouter>
@@ -29,10 +33,12 @@ function App() {
                         :
                         <Switch>
                             <Route exact path='/' component={TopicList}/>
+                            <Route path='/topic/:id' component={TopicDetails}/>
                             <Redirect to='/'/>
                         </Switch>
                     }
                 </div>
+
             </div>
         </BrowserRouter>
     );

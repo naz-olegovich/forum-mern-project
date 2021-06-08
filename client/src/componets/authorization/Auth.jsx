@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
-import {Avatar, Button, Paper, Grid, Typography, Container} from '@material-ui/core';
+import React, {useState, useRef} from 'react';
+import {Avatar, Button, Paper, Grid, Typography, Container, LinearProgress} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
 import Input from './Input';
-
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from "react-redux";
 import {login, registration} from "../../actions/user";
 
-const initialState = { userName: '', email: '', password: '', confirmPassword: '' };
+const initialState = { username: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
+    const formRef = useRef();
+    const loader = useSelector(state => state.app.loader)
 
     const [form, setForm] = useState(initialState);
     const [isSignup, setIsSignup] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const [validInput, setValidInput] = useState(true);
-    const handleShowPassword = () => setShowPassword(!showPassword);
+    const [validPasswordInputs, setValidPasswordInputs] = useState(true);
 
     const switchMode = () => {
         setForm(initialState);
@@ -29,21 +29,33 @@ const Auth = () => {
         setForm({ ...form, [e.target.name]: e.target.value })
     };
 
+    const handleShowPassword = () => setShowPassword(!showPassword);
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!formRef.current.reportValidity()) {
+            return
+        }
         if (isSignup) {
             if (form.password === form.confirmPassword) {
-                setValidInput(true)
+                setValidPasswordInputs(true)
                 dispatch(registration(form))
             } else {
-                setValidInput(false)
-                alert("Passwords do not match")
+                setValidPasswordInputs(false)
             }
-
         } else {
             dispatch(login(form))
         }
     };
+
+
+    if (loader) {
+        return (
+            <LinearProgress color="secondary"/>
+        );
+    }
+
 
     return (
         <Container component="main" maxWidth="xs">
@@ -52,17 +64,22 @@ const Auth = () => {
                     <LockOutlinedIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">{isSignup ? 'Sign up' : 'Sign in'}</Typography>
-                <form className={classes.form}>
+                {!validPasswordInputs && <Typography color={'secondary'}>Password does not match</Typography>}
+                <form className={classes.form} ref={formRef}>
                     <Grid container spacing={1}>
                         {isSignup && (
-                            <Input name="userName" label="Username" handleChange={handleChange} autoFocus/>
+                            <Input name="username" label="username" handleChange={handleChange} autoFocus
+                                   autoComplete={'off'}/>
                         )}
-                        <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
+                        <Input name="email" label="Email Address" handleChange={handleChange} type="email"
+                               autoComplete={'off'}/>
                         <Input name="password" label="Password" handleChange={handleChange}
                                type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>
+
                         {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange}
-                                            type="password" isValid={validInput}/>}
+                                            type="password" isValid={validPasswordInputs}/>}
                     </Grid>
+
                     <Button type="submit" onClick={handleSubmit} fullWidth
                             variant="contained" color="primary" className={classes.submit}>
                         {isSignup ? 'Sign Up' : 'Sign In'}

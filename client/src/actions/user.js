@@ -1,16 +1,18 @@
 import axios from "axios";
 import {setUser} from "../reducers/userReducer";
+import {hideLoader, showLoader} from "../reducers/appReducer";
 
 
 export const registration = (formData) => {
     return async dispatch => {
-        const { userName, email, password } = formData
+        const { username, email, password } = formData
         try {
             const response = await axios.post('http://localhost:5000/api/auth/registration', {
-                userName,
+                username,
                 email,
                 password,
             })
+
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {
@@ -28,10 +30,9 @@ export const registration = (formData) => {
 
 export const login = (formData) => {
     return async dispatch => {
-        const { userName, email, password } = formData
+        const { email, password } = formData
         try {
             const response = await axios.post(`http://localhost:5000/api/auth/login`, {
-                userName,
                 email,
                 password
             })
@@ -46,14 +47,16 @@ export const login = (formData) => {
 export const auth = () => {
     return async dispatch => {
         try {
+            dispatch(showLoader())
             const response = await axios.get(`http://localhost:5000/api/auth/auth`,
                 { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
             )
-            console.log(response.data.token)
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {
             localStorage.removeItem('token')
+        }finally {
+            dispatch(hideLoader())
         }
     }
 }
