@@ -5,9 +5,9 @@ const Topic = new Schema({
     description: { type: String },
     text: { type: String, required: true },
     user: { type: ObjectId, ref: 'User' },
-    username: {type: String},
-    created_at: { type: Date, required:true },
-    comments : [{type: ObjectId, ref:'Comment'}]
-})
+    username: { type: String },
+    createdAt: { type: Date, required: true, default: new Date() },
+    comments: [{ type: ObjectId, ref: 'Comment' }]
+});
 
-module.exports = model("Topic", Topic);
+module.exports = model('Topic', Topic);
