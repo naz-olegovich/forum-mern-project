@@ -4,8 +4,7 @@ export default makeStyles((theme) => ({
     root: {
         minWidth: "60%",
         // maxWidth: '70%',
-        marginBottom: 20,
-
+        marginBottom: theme.spacing(2),
     },
     greenBackground: {
         backgroundColor: '#dfd',
@@ -24,6 +23,12 @@ export default makeStyles((theme) => ({
     },
     commentsBtn: {
         marginRight: 'auto',
+    },
+    comments:{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+
     }
 
 }));

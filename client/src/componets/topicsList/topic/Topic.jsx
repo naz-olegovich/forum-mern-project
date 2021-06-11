@@ -7,18 +7,23 @@ import {Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typogr
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import useStyles from './styles'
+import Comment from "../../comments/comment/Comment";
 
 const Topic = (props) => {
+    const { data: topic } = props
     const classes = useStyles();
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
-
     const { currentUser } = useSelector((state) => state.user);
-    const isOwner = currentUser.topics.includes(props.topic._id) || currentUser.id === props.topic.user;
+    const isOwner = currentUser.topics.includes(topic._id) || currentUser.id === topic.user;
 
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
+    };
+
+    const handleDelete = (e) => {
+        dispatch(deleteTopic(topic._id))
     };
 
     const formatDate = (date) => {
@@ -26,16 +31,28 @@ const Topic = (props) => {
         return `${dateOfCreation.toDateString()} at ${dateOfCreation.toLocaleTimeString().slice(0, -3)}`
     }
 
+    const getLast2Comments = (commentsList) => commentsList.slice(-2).reverse();
+
 
     return (
         <Card className={[classes.root, isOwner && classes.greenBackground].join(' ')}>
             <CardHeader
-                title={<Link to={`/topic/${props.topic._id}`} >{props.topic.title} </Link>}
-            subheader={`by ${props.topic.username}, ${formatDate(props.topic.created_at)}`}
+                title={<Link to={`/topic/${topic._id}`}>{topic.title} </Link>}
+                subheader={`by ${topic.username}, ${formatDate(topic.createdAt)}`}
+                action={
+                    <CardActions>
+                        {isOwner &&
+                        <Button size="small" color="secondary"
+                                onClick={handleDelete}>
+                            <DeleteIcon fontSize="small"/> &nbsp; Delete
+                        </Button>}
+                    </CardActions>
+                }
             />
+
             <CardContent>
                 <Typography variant="body2" color="textPrimary" component="p">
-                    {props.topic.description}
+                    {topic.description}
                 </Typography>
             </CardContent>
 
@@ -51,28 +68,14 @@ const Topic = (props) => {
                     })}/>
                 </IconButton>
 
-                {isOwner &&
-                <Button size="small" color="secondary"
-                        onClick={() => dispatch(deleteTopic(props.topic._id))}>
-                    <DeleteIcon fontSize="small"/> &nbsp; Delete
-                </Button>}
 
             </CardActions>
+
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                    <Typography paragraph>
-                        Comment 1
-                    </Typography>
-
-                    <Typography paragraph>
-                        Comment 2
-                    </Typography>
-
-                    <Typography paragraph>
-                        Comment 2
-                    </Typography>
+                <CardContent className={classes.comments}>
+                    {getLast2Comments(topic.comments).map((comment) => (
+                        <Comment key={comment._id} data={comment}/>))}
                 </CardContent>
-
             </Collapse>
 
         </Card>

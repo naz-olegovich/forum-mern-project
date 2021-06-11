@@ -14,12 +14,11 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setTimeout(()=>{
+        setTimeout(() => {
             dispatch(auth())
-        }, 1000)
+        }, 100)
 
     }, [dispatch])
-
     return (
         <BrowserRouter>
             <div>
@@ -31,11 +30,11 @@ function App() {
                             <Redirect to='/auth'/>
                         </Switch>
                         :
-                        <Switch>
-                            <Route exact path='/' component={TopicList}/>
-                            <Route path='/topic/:id' component={TopicDetails}/>
-                            <Redirect to='/'/>
-                        </Switch>
+                    <Switch>
+                        <Route exact path={`/`} component={ TopicList }/>
+                        <Route path='/topic/:id' component={TopicDetails}/>
+                        <Redirect to='/'/>
+                    </Switch>
                     }
                 </div>
 

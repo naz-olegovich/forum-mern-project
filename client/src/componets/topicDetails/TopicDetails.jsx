@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom';
 import {getTopicById} from '../../actions/topics';
 import useStyles from './styles';
 import {Paper, Typography, Container, Divider, LinearProgress} from "@material-ui/core";
+import Comments from "../comments/Coments";
 
 const TopicDetails = () => {
     const { topicDetails: topic } = useSelector((state) => state.topics);
@@ -38,11 +39,11 @@ const TopicDetails = () => {
                         <Typography variant="h3" component="h2">{topic.title}</Typography>
                         <Typography gutterBottom variant="subtitle1" component="p"><i>Description:</i> {topic.description}</Typography>
                         <Typography gutterBottom variant="subtitle1" component="p"><i>Created by:</i>&nbsp; {topic.username}</Typography>
-                        <Typography gutterBottom variant="subtitle1" component="p"><i>Created at:</i>&nbsp;&nbsp; {formatDate(topic.created_at)}</Typography>
+                        <Typography gutterBottom variant="subtitle1" component="p"><i>Created at:</i>&nbsp;&nbsp; {formatDate(topic.createdAt)}</Typography>
                         <Divider style={{ margin: '15px 0px' }}/>
                         <Typography variant="body1">{topic.text}</Typography>
                         <Divider style={{ margin: '20px 0' }}/>
-                        <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
+                        <Comments comments={topic.comments} topicId={id}/>
                         <Divider style={{ margin: '20px 0' }}/>
                     </div>
                 </div>

@@ -39,7 +39,7 @@ export const login = (formData) => {
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {
-            alert(e)
+            alert(e.response.data.message)
         }
     }
 }

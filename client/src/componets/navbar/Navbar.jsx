@@ -12,9 +12,9 @@ const Navbar = () => {
     const isAuth = useSelector(state => state.user.isAuth)
     const dispatch = useDispatch()
     return (
-        <AppBar position='sticky'>
+        <AppBar position='sticky' className={classes.appBar}>
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>
+                <Typography  component={Link} to="/" variant="h6" className={classes.title}>
                     Forum App
                 </Typography>
                 {isAuth ?

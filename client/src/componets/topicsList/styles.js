@@ -15,14 +15,17 @@ export default makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: 'rgba(255, 255, 255, 1)',
-        border: '2px solid #255',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        boxShadow: theme.shadows[20],
+        padding: theme.spacing(2, 6, 3),
+    },
+    title: {
+        marginBottom: theme.spacing(3),
+        textAlign: 'center'
     },
     submit: {
         marginTop: 10
     },
-    title: {
-        marginBottom: 20
-    }
+    textarea:{
+        padding:5,
+    },
 }));

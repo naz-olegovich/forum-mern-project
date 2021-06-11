@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react';
 import {Avatar, Button, Paper, Grid, Typography, Container, LinearProgress} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
-import Input from './Input';
+import Input from '../utils/input/Input';
 import {useDispatch, useSelector} from "react-redux";
 import {login, registration} from "../../actions/user";
 
@@ -68,16 +68,16 @@ const Auth = () => {
                 <form className={classes.form} ref={formRef}>
                     <Grid container spacing={1}>
                         {isSignup && (
-                            <Input name="username" label="username" handleChange={handleChange} autoFocus
+                            <Input name="username" label="username" handleChange={handleChange} autoFocus value={form.username}
                                    autoComplete={'off'}/>
                         )}
-                        <Input name="email" label="Email Address" handleChange={handleChange} type="email"
+                        <Input name="email" label="Email Address" handleChange={handleChange} type="email" value={form.email}
                                autoComplete={'off'}/>
-                        <Input name="password" label="Password" handleChange={handleChange}
+                        <Input name="password" label="Password" handleChange={handleChange} value={form.password}
                                type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>
 
                         {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange}
-                                            type="password" isValid={validPasswordInputs}/>}
+                                            value={form.confirmPassword} type="password" isValid={validPasswordInputs}/>}
                     </Grid>
 
                     <Button type="submit" onClick={handleSubmit} fullWidth

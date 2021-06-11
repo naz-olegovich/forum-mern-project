@@ -4,17 +4,19 @@ import {TextField, Grid, InputAdornment, IconButton} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const Input = ({ name, handleChange, label, half, autoFocus, type, isValid, handleShowPassword, autoComplete='on' }) => (
+const Input = ({ name,value, handleChange, label, half, autoFocus, type, isValid, handleShowPassword,required=true, autoComplete='on', multiline=false }) => (
     <Grid item xs={12} sm={half ? 6 : 12}>
         <TextField
             name={name}
-            required={true}
+            value={value}
+            required={required}
             onChange={handleChange}
             variant="outlined"
             fullWidth
             label={label}
             autoFocus={autoFocus}
             type={type}
+            multiline={multiline}
             error={!isValid && isValid !== undefined}
             autoComplete={autoComplete}
             InputProps={
