@@ -1,10 +1,10 @@
-import React, {useState, useRef} from 'react';
-import {Avatar, Button, Paper, Grid, Typography, Container, LinearProgress} from '@material-ui/core';
+import React, { useState, useRef } from 'react';
+import { Avatar, Button, Paper, Grid, Typography, Container, LinearProgress } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
 import Input from '../utils/input/Input';
-import {useDispatch, useSelector} from "react-redux";
-import {login, registration} from "../../actions/user";
+import { useDispatch, useSelector } from 'react-redux';
+import { login, registration } from '../../actions/user';
 
 const initialState = { username: '', email: '', password: '', confirmPassword: '' };
 
@@ -12,7 +12,7 @@ const Auth = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const formRef = useRef();
-    const loader = useSelector(state => state.app.loader)
+    const loader = useSelector((state) => state.app.loader);
 
     const [form, setForm] = useState(initialState);
     const [isSignup, setIsSignup] = useState(false);
@@ -26,7 +26,7 @@ const Auth = () => {
     };
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
+        setForm({ ...form, [e.target.name]: e.target.value });
     };
 
     const handleShowPassword = () => setShowPassword(!showPassword);
@@ -35,17 +35,17 @@ const Auth = () => {
         e.preventDefault();
 
         if (!formRef.current.reportValidity()) {
-            return
+            return;
         }
         if (isSignup) {
             if (form.password === form.confirmPassword) {
-                setValidPasswordInputs(true)
-                dispatch(registration(form))
+                setValidPasswordInputs(true);
+                dispatch(registration(form));
             } else {
-                setValidPasswordInputs(false)
+                setValidPasswordInputs(false);
             }
         } else {
-            dispatch(login(form))
+            dispatch(login(form));
         }
     };
 
@@ -68,27 +68,26 @@ const Auth = () => {
                 <form className={classes.form} ref={formRef}>
                     <Grid container spacing={1}>
                         {isSignup && (
-                            <Input name="username" label="username" handleChange={handleChange} autoFocus value={form.username}
-                                   autoComplete={'off'}/>
-                        )}
-                        <Input name="email" label="Email Address" handleChange={handleChange} type="email" value={form.email}
-                               autoComplete={'off'}/>
+                            <Input name="username" label="username" handleChange={handleChange}
+                                autoFocus value={form.username} autoComplete={'off'}/>)}
+                        <Input name="email" label="Email Address" handleChange={handleChange} type="email"
+                            value={form.email} autoComplete={'off'}/>
                         <Input name="password" label="Password" handleChange={handleChange} value={form.password}
-                               type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>
+                            type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>
 
                         {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange}
-                                            value={form.confirmPassword} type="password" isValid={validPasswordInputs}/>}
+                            value={form.confirmPassword} type="password" isValid={validPasswordInputs}/>}
                     </Grid>
 
                     <Button type="submit" onClick={handleSubmit} fullWidth
-                            variant="contained" color="primary" className={classes.submit}>
+                        variant="contained" color="primary" className={classes.submit}>
                         {isSignup ? 'Sign Up' : 'Sign In'}
                     </Button>
 
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Button onClick={switchMode}>
-                                {isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up"}
+                                {isSignup ? 'Already have an account? Sign in' : 'Don\'t have an account? Sign Up'}
                             </Button>
                         </Grid>
                     </Grid>

@@ -1,8 +1,8 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-        minWidth: "60%",
+        minWidth: '60%',
         // maxWidth: '70%',
         marginBottom: theme.spacing(2),
     },
@@ -24,7 +24,7 @@ export default makeStyles((theme) => ({
     commentsBtn: {
         marginRight: 'auto',
     },
-    comments:{
+    comments: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

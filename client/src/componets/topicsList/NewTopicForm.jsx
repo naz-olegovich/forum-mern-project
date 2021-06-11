@@ -1,9 +1,9 @@
-import React, {useRef, useState} from 'react';
-import {Backdrop, Button, Container, Fade, Grid, Modal, Paper, Typography} from "@material-ui/core";
-import Input from "../utils/input/Input";
-import {useDispatch} from "react-redux";
-import {createTopic} from "../../actions/topics";
-import useStyles from "./styles";
+import React, { useRef, useState } from 'react';
+import { Backdrop, Button, Container, Fade, Grid, Modal, Paper, Typography } from '@material-ui/core';
+import Input from '../utils/input/Input';
+import { useDispatch } from 'react-redux';
+import { createTopic } from '../../actions/topics';
+import useStyles from './styles';
 
 const NewTopicForm = () => {
     const formRef = useRef();
@@ -61,15 +61,15 @@ const NewTopicForm = () => {
                                 <Grid container spacing={1}>
 
                                     <Input name="title" label="Tittle" type="text" autoComplete={'off'}
-                                           handleChange={handleChange}/>
+                                        handleChange={handleChange}/>
                                     <Input name="description" label="Description" type="text" autoComplete={'off'}
-                                           required={false} handleChange={handleChange}/>
+                                        required={false} handleChange={handleChange}/>
 
                                     <Input name="text" label="Text" autoComplete={'off'} multiline={true}
-                                           handleChange={handleChange}/>
+                                        handleChange={handleChange}/>
                                 </Grid>
                                 <Button onClick={handleSubmit} type="submit" fullWidth
-                                        variant="contained" color="primary" className={classes.submit}>
+                                    variant="contained" color="primary" className={classes.submit}>
                                     Create discussion
                                 </Button>
                             </form>

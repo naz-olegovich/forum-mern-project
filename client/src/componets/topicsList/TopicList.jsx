@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './styles';
 
 import Topic from './topic/Topic';
-import {getTopics} from '../../actions/topics';
-import NewTopicForm from "./NewTopicForm";
-import Paginate from "../utils/pagination/Pagination";
+import { getTopics } from '../../actions/topics';
+import NewTopicForm from './NewTopicForm';
+import Paginate from '../utils/pagination/Pagination';
 
 
 const TopicList = () => {
@@ -31,9 +31,9 @@ const TopicList = () => {
             {/*</Grid>*/}
 
             <Paginate
-            data={topics}
-            RenderComponent={Topic}
-            dataLimit={2}
+                data={topics}
+                RenderComponent={Topic}
+                dataLimit={2}
             />
 
 

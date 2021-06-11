@@ -1,4 +1,4 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     divPagination: {
@@ -11,10 +11,10 @@ export default makeStyles((theme) => ({
     },
     pagination: {
         borderRadius: 4,
-        padding: "2px",
-        width:"50%",
+        padding: '2px',
+        width: '50%',
     },
-    paginationContainer:{
+    paginationContainer: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

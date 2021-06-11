@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import {getTopicById} from '../../actions/topics';
+import { getTopicById } from '../../actions/topics';
 import useStyles from './styles';
-import {Paper, Typography, Container, Divider, LinearProgress} from "@material-ui/core";
-import Comments from "../comments/Coments";
+import { Paper, Typography, Container, Divider, LinearProgress } from '@material-ui/core';
+import Comments from '../comments/Coments';
 
 const TopicDetails = () => {
     const { topicDetails: topic } = useSelector((state) => state.topics);
-    const loader = useSelector(state => state.app.loader)
+    const loader = useSelector((state) => state.app.loader);
     const dispatch = useDispatch();
     const classes = useStyles();
     const { id } = useParams();
@@ -20,8 +20,8 @@ const TopicDetails = () => {
 
     const formatDate = (date) => {
         const dateOfCreation = new Date(date);
-        return `${dateOfCreation.toDateString()} at ${dateOfCreation.toLocaleTimeString().slice(0, -3)}`
-    }
+        return `${dateOfCreation.toDateString()} at ${dateOfCreation.toLocaleTimeString().slice(0, -3)}`;
+    };
 
     if (loader) {
         return (
@@ -37,9 +37,15 @@ const TopicDetails = () => {
                 <div className={classes.card}>
                     <div className={classes.section}>
                         <Typography variant="h3" component="h2">{topic.title}</Typography>
-                        <Typography gutterBottom variant="subtitle1" component="p"><i>Description:</i> {topic.description}</Typography>
-                        <Typography gutterBottom variant="subtitle1" component="p"><i>Created by:</i>&nbsp; {topic.username}</Typography>
-                        <Typography gutterBottom variant="subtitle1" component="p"><i>Created at:</i>&nbsp;&nbsp; {formatDate(topic.createdAt)}</Typography>
+                        <Typography gutterBottom variant="subtitle1" component="p">
+                            <i>Description:</i> {topic.description}
+                        </Typography>
+                        <Typography gutterBottom variant="subtitle1" component="p">
+                            <i>Created by:</i>&nbsp; {topic.username}
+                        </Typography>
+                        <Typography gutterBottom variant="subtitle1" component="p">
+                            <i>Created at:</i>&nbsp;&nbsp; {formatDate(topic.createdAt)}
+                        </Typography>
                         <Divider style={{ margin: '15px 0px' }}/>
                         <Typography variant="body1">{topic.text}</Typography>
                         <Divider style={{ margin: '20px 0' }}/>

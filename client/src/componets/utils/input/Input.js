@@ -1,10 +1,23 @@
 import React from 'react';
-import {TextField, Grid, InputAdornment, IconButton} from '@material-ui/core';
+import { TextField, Grid, InputAdornment, IconButton } from '@material-ui/core';
 
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const Input = ({ name,value, handleChange, label, half, autoFocus, type, isValid, handleShowPassword,required=true, autoComplete='on', multiline=false }) => (
+const Input = ({
+    name,
+    value,
+    handleChange,
+    label,
+    half,
+    autoFocus,
+    type,
+    isValid,
+    handleShowPassword,
+    required = true,
+    autoComplete = 'on',
+    multiline = false
+}) => (
     <Grid item xs={12} sm={half ? 6 : 12}>
         <TextField
             name={name}

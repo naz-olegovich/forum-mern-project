@@ -1,4 +1,4 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
@@ -25,7 +25,7 @@ export default makeStyles((theme) => ({
     submit: {
         marginTop: 10
     },
-    textarea:{
-        padding:5,
+    textarea: {
+        padding: 5,
     },
 }));

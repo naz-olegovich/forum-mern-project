@@ -1,4 +1,4 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     paper: {
@@ -32,8 +32,8 @@ export default makeStyles((theme) => ({
         height: 'calc(100vh - 50px)',
     },
     ldsDualRing: {
-    display: 'inline-block',
-    width: '80px',
-    height: '80px'
-}
+        display: 'inline-block',
+        width: '80px',
+        height: '80px'
+    }
 }));

@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {deleteTopic} from "../../../actions/topics";
-import {Link} from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteTopic } from '../../../actions/topics';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import {Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typography, Button} from '@material-ui/core';
+import { Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typography, Button } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
-import useStyles from './styles'
-import Comment from "../../comments/comment/Comment";
+import useStyles from './styles';
+import Comment from '../../comments/comment/Comment';
 
 const Topic = (props) => {
-    const { data: topic } = props
+    const { data: topic } = props;
     const classes = useStyles();
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
@@ -22,14 +22,14 @@ const Topic = (props) => {
         setExpanded(!expanded);
     };
 
-    const handleDelete = (e) => {
-        dispatch(deleteTopic(topic._id))
+    const handleDelete = () => {
+        dispatch(deleteTopic(topic._id));
     };
 
     const formatDate = (date) => {
         const dateOfCreation = new Date(date);
-        return `${dateOfCreation.toDateString()} at ${dateOfCreation.toLocaleTimeString().slice(0, -3)}`
-    }
+        return `${dateOfCreation.toDateString()} at ${dateOfCreation.toLocaleTimeString().slice(0, -3)}`;
+    };
 
     const getLast2Comments = (commentsList) => commentsList.slice(-2).reverse();
 
@@ -43,7 +43,7 @@ const Topic = (props) => {
                     <CardActions>
                         {isOwner &&
                         <Button size="small" color="secondary"
-                                onClick={handleDelete}>
+                            onClick={handleDelete}>
                             <DeleteIcon fontSize="small"/> &nbsp; Delete
                         </Button>}
                     </CardActions>
