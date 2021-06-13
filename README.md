@@ -8,6 +8,12 @@
 - JWT token
 
 
+![sign-in](https://github.com/naz-olegovich/forum-mern-project/blob/main/doc/img/sign-in.png)
+
+
+![sign-up](https://github.com/naz-olegovich/forum-mern-project/blob/main/doc/img/sign-up.png)
+
+
 **Перший вигляд**</br>
 Список тем, який відсортований за датою/часом останнього коментаря.
 На кожній темі розміщено:
@@ -21,13 +27,16 @@
 Для створення нових тем — форма з `Jodit rich text editor` для зручного форматування тексту.
 
 
-Власні теми (теми активного користувача) виділяються зеленим + з'являється кнопка "Видалити тему"
+![new-topic](https://github.com/naz-olegovich/forum-mern-project/blob/main/doc/img/new-topic.png)
 
+Власні теми (теми активного користувача) виділяються зеленим + з'являється кнопка "Видалити тему"
+![topics-list](https://github.com/naz-olegovich/forum-mern-project/blob/main/doc/img/topics-list.png)
 
 
 **Другий вигляд**</br>
 Тема з детальним описом та можливістю додати коментарі.
 Навігація: по 20 коментарів
+![topic-details](https://github.com/naz-olegovich/forum-mern-project/blob/main/doc/img/topic-details.png)
 
 
 
