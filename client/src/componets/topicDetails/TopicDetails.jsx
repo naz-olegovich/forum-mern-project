@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
 
-import { getTopicById } from '../../actions/topics';
+import {getTopicById} from '../../actions/topics';
 import useStyles from './styles';
-import { Paper, Typography, Container, Divider, LinearProgress } from '@material-ui/core';
+import {Paper, Typography, Container, Divider, LinearProgress} from '@material-ui/core';
 import Comments from '../comments/Coments';
 
 const TopicDetails = () => {
@@ -37,9 +37,12 @@ const TopicDetails = () => {
                 <div className={classes.card}>
                     <div className={classes.section}>
                         <Typography variant="h3" component="h2">{topic.title}</Typography>
+                        {topic.description &&
                         <Typography gutterBottom variant="subtitle1" component="p">
                             <i>Description:</i> {topic.description}
                         </Typography>
+                        }
+
                         <Typography gutterBottom variant="subtitle1" component="p">
                             <i>Created by:</i>&nbsp; {topic.username}
                         </Typography>
@@ -48,11 +51,14 @@ const TopicDetails = () => {
                         </Typography>
                         <Divider style={{ margin: '15px 0px' }}/>
 
+                        {topic.text &&
                         <Typography variant="body1">
-                            <div dangerouslySetInnerHTML={{__html: topic.text}} />
-                        </Typography>
-
+                            <div dangerouslySetInnerHTML={{ __html: topic.text }}/>
+                        </Typography>}
                         <Divider style={{ margin: '20px 0' }}/>
+                        
+
+
                         <Comments comments={topic.comments} topicId={id}/>
                         <Divider style={{ margin: '20px 0' }}/>
                     </div>
