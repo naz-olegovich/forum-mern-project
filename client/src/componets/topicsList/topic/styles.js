@@ -1,13 +1,27 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-    root: {
-        minWidth: '60%',
-        // maxWidth: '70%',
+    card: {
+        maxWidth: '70%',
+        minWidth: '70%',
+        marginLeft: theme.spacing(15),
         marginBottom: theme.spacing(2),
+        backgroundColor: 'white',
+        borderRadius: 15,
+
+    },
+    title: {
+        textDecoration: 'none',
+        color: '#d2601a',
+        fontWeight: "bold",
+        overflowWrap: 'break-word'
+    },
+    description: {
+        fontSize: "bold"
+
     },
     greenBackground: {
-        backgroundColor: '#dfd',
+        backgroundColor: '#ECFFDC',
     },
     media: {
         paddingTop: '56.25%', // 16:9
@@ -21,14 +35,22 @@ export default makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    commentsBtn: {
-        marginRight: 'auto',
-    },
-    comments: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
 
-    }
+    commentsDiv: {
+        marginLeft: theme.spacing(1),
+    },
+    comment: {
+        borderRadius: 15,
+        marginBottom: theme.spacing(1),
+        padding: '8px 10px 10px 20px',
+        overflow: 'hidden',
+    },
+    commentText: {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: '-webkit-box',
+        '-webkit-line-clamp': 2, /* number of lines to show */
+        '-webkit-box-orient': 'vertical',
+    },
 
 }));

@@ -4,6 +4,7 @@ const CREATE_TOPIC = 'CREATE_TOPIC';
 const DELETE_TOPIC = 'DELETE_TOPIC';
 const CREATE_COMMENT = 'CREATE_COMMENT';
 
+
 const defaultState = { topics: [], topicDetails: {} };
 
 export default function topicReducer(state = defaultState, action) {

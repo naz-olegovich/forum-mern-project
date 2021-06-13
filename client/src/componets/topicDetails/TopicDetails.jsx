@@ -32,7 +32,7 @@ const TopicDetails = () => {
     if (!topic) return null;
 
     return (
-        <Container component="main" maxWidth="xl">
+        <Container component="main">
             <Paper className={classes.paper} elevation={6}>
                 <div className={classes.card}>
                     <div className={classes.section}>
@@ -44,10 +44,14 @@ const TopicDetails = () => {
                             <i>Created by:</i>&nbsp; {topic.username}
                         </Typography>
                         <Typography gutterBottom variant="subtitle1" component="p">
-                            <i>Created at:</i>&nbsp;&nbsp; {formatDate(topic.createdAt)}
+                            <i>Created at:</i>&ensp; {formatDate(topic.createdAt)}
                         </Typography>
                         <Divider style={{ margin: '15px 0px' }}/>
-                        <Typography variant="body1">{topic.text}</Typography>
+
+                        <Typography variant="body1">
+                            <div dangerouslySetInnerHTML={{__html: topic.text}} />
+                        </Typography>
+
                         <Divider style={{ margin: '20px 0' }}/>
                         <Comments comments={topic.comments} topicId={id}/>
                         <Divider style={{ margin: '20px 0' }}/>

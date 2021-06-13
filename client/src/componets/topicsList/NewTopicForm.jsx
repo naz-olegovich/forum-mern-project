@@ -1,18 +1,33 @@
-import React, { useRef, useState } from 'react';
-import { Backdrop, Button, Container, Fade, Grid, Modal, Paper, Typography } from '@material-ui/core';
+import React, {useRef, useState} from 'react';
+import {Backdrop, Button, Container, Fade, Grid, Modal, Paper, Typography, Fab} from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import Input from '../utils/input/Input';
-import { useDispatch } from 'react-redux';
-import { createTopic } from '../../actions/topics';
+import {useDispatch} from 'react-redux';
+import {createTopic} from '../../actions/topics';
 import useStyles from './styles';
+import JoditEditor from "jodit-react";
 
 const NewTopicForm = () => {
     const formRef = useRef();
     const dispatch = useDispatch();
     const classes = useStyles();
+    const editor = useRef(null)
 
     const initialState = { title: '', description: '', text: '' };
     const [open, setOpen] = React.useState(false);
     const [form, setForm] = useState(initialState);
+    const config = {
+        placeholder:'Content',
+        processPasteHTML: false,
+        spellcheck: false,
+        toolbarButtonSize: "small",
+        toolbarAdaptive: false,
+        askBeforePasteHTML: false,
+        askBeforePasteFromWord: false,
+        // defaultActionOnPaste: "insert_as_text",
+        buttons: "bold,italic,underline,strikethrough,superscript," +
+            "subscript,|,ul,ol,|,indent,outdent,left,font,fontsize,paragraph,|"
+    }
 
     const handleOpen = () => {
         setOpen(true);
@@ -27,21 +42,23 @@ const NewTopicForm = () => {
     };
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if (!formRef.current.reportValidity()) {
             return;
         }
-        e.preventDefault();
+
         dispatch(createTopic(form));
         setOpen(false);
     };
+    const [content, setContent] = useState('')
 
 
     return (
         <div>
-            <div className={classes.addBtn}>
-                <Button variant="contained" color="secondary" onClick={handleOpen}>
-                    Create new topic
-                </Button>
+            <div className={classes.addBtnDiv}>
+                <Fab aria-label="add" onClick={handleOpen} className={classes.fabBtn}>
+                    <AddIcon style={{ color: 'white', fontSize: 'xx-large' }}/>
+                </Fab>
             </div>
 
 
@@ -52,30 +69,40 @@ const NewTopicForm = () => {
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{ timeout: 500, }}>
-                <Fade in={open}>
-                    <Container component="main" maxWidth="sm">
-                        <Paper className={classes.paper} elevation={6}>
-                            <Typography component="h1" variant="h5" className={classes.title}>Discussion
-                                creation</Typography>
-                            <form className={classes.form} ref={formRef}>
-                                <Grid container spacing={1}>
 
-                                    <Input name="title" label="Tittle" type="text" autoComplete={'off'}
-                                        handleChange={handleChange}/>
-                                    <Input name="description" label="Description" type="text" autoComplete={'off'}
-                                        required={false} handleChange={handleChange}/>
+                <Container component="main" maxWidth="md" style={{ outline: 'none' }}>
+                    <Paper className={classes.paper}>
+                        <Typography component="h1" variant="h5" className={classes.title}>Discussion
+                            creation</Typography>
+                        <form className={classes.form} ref={formRef}>
+                            <Grid container spacing={2}>
 
-                                    <Input name="text" label="Text" autoComplete={'off'} multiline={true}
-                                        handleChange={handleChange}/>
-                                </Grid>
-                                <Button onClick={handleSubmit} type="submit" fullWidth
+                                <Input name="title" label="Tittle" type="text" autoComplete={'off'}
+                                       handleChange={handleChange}/>
+                                <Input name="description" label="Description" type="text" autoComplete={'off'}
+                                       multiline={true} required={false} handleChange={handleChange}/>
+                                <div style={{ width: '100%', padding: 8 }} className=':root'>
+                                    <JoditEditor
+                                        ref={editor}
+                                        placeholder="qqq"
+                                        value={form.text}
+                                        config={config}
+                                        tabIndex={1} // tabIndex of textarea
+                                        onBlur={newContent => setForm({
+                                            ...form,
+                                            text: newContent
+                                        })} // preferred to use only this option to update the content for performance reasons
+                                        // onChange={newContent => setForm({ ...form, text: newContent })}
+                                    />
+                                </div>
+                            </Grid>
+                            <Button onClick={handleSubmit} type="submit" fullWidth
                                     variant="contained" color="primary" className={classes.submit}>
-                                    Create discussion
-                                </Button>
-                            </form>
-                        </Paper>
-                    </Container>
-                </Fade>
+                                Create discussion
+                            </Button>
+                        </form>
+                    </Paper>
+                </Container>
             </Modal>
         </div>
     );

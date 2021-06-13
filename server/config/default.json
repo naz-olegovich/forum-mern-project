@@ -1,5 +1,5 @@
 {
   "serverPort": 5000,
-  "dbUrl": "mongodb://localhost:27017/mern-forum",
+  "dbUrl": "mongodb+srv://nazar:E7qOxuNlkZjqObRg@cluster0.lgzpx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   "secretKey": "server-secret_key"
 }

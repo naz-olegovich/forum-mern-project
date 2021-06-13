@@ -14,10 +14,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setTimeout(() => {
             dispatch(auth())
-        }, 100)
-
     }, [dispatch])
     return (
         <BrowserRouter>

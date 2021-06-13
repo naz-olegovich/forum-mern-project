@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Paper } from '@material-ui/core';
+import {Grid, Paper, Typography} from '@material-ui/core';
 import useStyles from './styles';
 
 
@@ -8,26 +8,23 @@ const Comment = (props) => {
     const classes = useStyles();
     const formatDate = (date) => {
         const dateOfCreation = new Date(date);
-        return `${dateOfCreation.toDateString()} at ${dateOfCreation.toLocaleTimeString().slice(0, -3)}`;
+        return `${dateOfCreation.toLocaleString().split(',')[0]} at ${dateOfCreation.toLocaleTimeString().slice(0, -3)}`;
     };
 
+
     return (
-        <Paper className={classes.paper} elevation={15}>
-            <Grid container wrap="nowrap" spacing={2}>
-                {/*<Grid item>*/}
-                {/*    <Avatar alt="Remy Sharp" src={imgLink} />*/}
-                {/*</Grid>*/}
+        <Paper className={classes.comments} elevation={1} variant='outlined'>
+            <Grid container wrap="nowrap" spacing={2} zeroMinWidth>
                 <Grid justifyContent="left" item xs zeroMinWidth>
                     <div className={classes.inline}>
-                        <h4 className={classes.username}>{comment.username}</h4>
-                        <p className={classes.date}>
+                        <Typography style={{ fontWeight: 'bold' }} className={classes.username}>{comment.username}</Typography>
+                        <Typography variant='body2' className={classes.date}>
                             {formatDate(comment.createdAt)}
-                        </p>
+                        </Typography>
                     </div>
-
-                    <p className={classes.text}>
+                    <Typography variant='body1' className={classes.text}>
                         {comment.text}
-                    </p>
+                    </Typography>
 
                 </Grid>
             </Grid>

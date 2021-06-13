@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     paper: {
@@ -17,8 +17,13 @@ export default makeStyles((theme) => ({
         textAlign: 'left',
         color: 'gray'
     },
-    submit: {
-        marginLeft: theme.spacing(1),
-        marginBottom: theme.spacing(4)
+    form: {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(2),
+    },
+    NewCommentInput:{
+        borderRadius:'15px',
+        width:'70%',
     }
+
 }));

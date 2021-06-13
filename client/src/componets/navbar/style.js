@@ -1,27 +1,48 @@
-import { makeStyles } from '@material-ui/core';
+import {makeStyles} from '@material-ui/core';
 
 export default makeStyles((theme) => ({
     appBar: {
-        borderRadius: 15,
+        borderRadius: "0 0 15px 15px",
+        width: '96%',
+        margin: 'auto',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        padding: theme.spacing(2),
+        backgroundColor: '#1d3c45',
+        marginBottom: theme.spacing(5),
 
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
         },
+
     },
     title: {
         textDecoration: 'none',
-        color: 'white',
+        color: '#d2601a',
+        flexGrow: 1,
+        fontWeight: "bold",
+        fontSize: 23
+    },
+    logo: {
+        display: 'inline-block',
+        flexGrow: 1,
+    },
+    username: {
+        display: 'inline-block',
+        marginRight: theme.spacing(2),
+        color:'aqua'
+    },
+    menuBar: {
+
+        display: 'inline-block',
+        float: 'right',
     },
     btn: {
-        display: 'flex',
-        alignContent: 'right',
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        borderRadius: 15,
+        background: '#22414A',
+        borderRadius: 5,
         color: 'white',
-        marginLeft: 30
+        textDecoration: 'none',
     }
 }));
 

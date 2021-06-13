@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import useStyles from './styles';
 
 import Topic from './topic/Topic';
-import { getTopics } from '../../actions/topics';
+import {getTopics} from '../../actions/topics';
 import NewTopicForm from './NewTopicForm';
 import Paginate from '../utils/pagination/Pagination';
+import {Typography} from "@material-ui/core";
 
 
 const TopicList = () => {
@@ -20,23 +21,19 @@ const TopicList = () => {
     const { topics } = useSelector((state) => state.topics);
 
 
-
     return (
         <div className={classes.root}>
-
             <NewTopicForm/>
-
-            {/*<Grid container direction="column" alignItems="center" justify="flex-start">*/}
-            {/*    {topics?.map((topic) => (<Topic key={topic._id} topic={topic}/>))}*/}
-            {/*</Grid>*/}
-
-            <Paginate
-                data={topics}
-                RenderComponent={Topic}
-                dataLimit={2}
-            />
-
-
+            {topics.length ?
+                <Paginate
+                    data={topics}
+                    RenderComponent={Topic}
+                    dataLimit={10}
+                />
+                :
+                <Typography className={classes.title} variant='h4'>
+                    There are no topics
+                </Typography>}
         </div>
     );
 };

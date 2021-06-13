@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Grid, Paper } from '@material-ui/core';
-import { Pagination, PaginationItem } from '@material-ui/lab';
+import React, {useState, useEffect} from 'react';
+import {Container, Grid} from '@material-ui/core';
+import {Pagination, PaginationItem} from '@material-ui/lab';
 import useStyles from './styles';
-import { Link, useLocation } from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -18,7 +18,7 @@ const Paginate = ({ data, RenderComponent, dataLimit }) => {
 
     useEffect(() => {
         setCurrentPage(page);
-    }, [ page]);
+    }, [page]);
 
     const getPaginatedData = () => {
         const startIndex = currentPage * dataLimit - dataLimit;
@@ -28,26 +28,28 @@ const Paginate = ({ data, RenderComponent, dataLimit }) => {
 
     return (
         <div>
-            <Grid container direction="column" alignItems="center" justify="flex-start">
+            <Grid container direction="column" justify="flex-start">
                 {getPaginatedData().map((data) => (
                     <RenderComponent key={data._id} data={data}/>
                 ))}
             </Grid>
 
             {Boolean(data.length) &&
-                <Container component="main" maxWidth="lg" className={classes.paginationContainer}>
-                    <Paper className={classes.pagination} elevation={6}>
-                        <Pagination
-                            classes={{ ul: classes.ul }}
-                            count={numberOfPages}
-                            page={Number(page)}
-                            variant="outlined"
-                            color="primary"
-                            renderItem={(item) => (
-                                <PaginationItem {...item} component={Link} to={`${location.pathname}?page=${item.page}`}/>
-                            )}
-                        />
-                    </Paper></Container>
+            <Container component="main" maxWidth="lg" className={classes.paginationContainer}>
+
+                <Pagination
+                    classes={{ ul: classes.ul }}
+                    color='primary'
+                    size='medium'
+                    count={numberOfPages}
+                    page={Number(page)}
+                    variant="outlined"
+                    shape='rounded'
+                    renderItem={(item) => (
+                        <PaginationItem {...item}  component={Link} to={`${location.pathname}?page=${item.page}`}/>
+                    )}
+                />
+            </Container>
             }
         </div>
     );
