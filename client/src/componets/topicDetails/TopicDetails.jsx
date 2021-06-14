@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
 
-import { getTopicById } from '../../actions/topics';
+import {getTopicById} from '../../actions/topics';
 import useStyles from './styles';
-import { Paper, Typography, Container, Divider, LinearProgress } from '@material-ui/core';
+import {Paper, Typography, Container, Divider, LinearProgress} from '@material-ui/core';
 import Comments from '../comments/Coments';
 
 const TopicDetails = () => {
@@ -52,9 +52,8 @@ const TopicDetails = () => {
                         <Divider style={{ margin: '15px 0px' }}/>
 
                         {topic.text &&
-                        <Typography variant="body1">
-                            <div dangerouslySetInnerHTML={{ __html: topic.text }}/>
-                        </Typography>}
+                        <div dangerouslySetInnerHTML={{ __html: topic.text }}/>
+                        }
                         <Divider style={{ margin: '20px 0' }}/>
 
                         <Comments comments={topic.comments} topicId={id}/>

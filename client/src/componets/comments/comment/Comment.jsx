@@ -14,8 +14,8 @@ const Comment = (props) => {
 
     return (
         <Paper className={classes.comments} elevation={1} variant='outlined'>
-            <Grid container wrap="nowrap" spacing={2} zeroMinWidth>
-                <Grid justifyContent="left" item xs zeroMinWidth>
+            <Grid container wrap="nowrap" spacing={2}>
+                <Grid justifycontent="left" item xs zeroMinWidth>
                     <div className={classes.inline}>
                         <Typography style={{ fontWeight: 'bold' }} className={classes.username}>
                             {comment.username}

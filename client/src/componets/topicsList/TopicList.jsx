@@ -6,7 +6,7 @@ import Topic from './topic/Topic';
 import { getTopics } from '../../actions/topics';
 import NewTopicForm from './NewTopicForm';
 import Paginate from '../utils/pagination/Pagination';
-import { Typography } from '@material-ui/core';
+import {LinearProgress, Typography} from '@material-ui/core';
 
 
 const TopicList = () => {
@@ -15,11 +15,17 @@ const TopicList = () => {
 
 
     useEffect(() => {
-        dispatch(getTopics());
+       dispatch(getTopics())
     }, [dispatch]);
 
     const { topics } = useSelector((state) => state.topics);
+    const loader = useSelector((state) => state.app.loader);
 
+    if (loader) {
+        return (
+            <LinearProgress color="secondary"/>
+        );
+    }
 
     return (
         <div className={classes.root}>

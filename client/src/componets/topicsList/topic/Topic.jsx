@@ -71,7 +71,7 @@ const Topic = (props) => {
                 <div className={classes.commentsDiv}>
                     <Paper className={[classes.comment, isOwner && classes.greenBackground].join(' ')}
                         variant='outlined'>
-                        <Grid container wrap="nowrap" zeroMinWidth={true}>
+                        <Grid container wrap="nowrap">
                             <Grid item xs={'auto'} style={{ marginRight: 15 }}>
                                 <Typography style={{ fontWeight: 'bold' }}>{lastComment.username}</Typography>
                                 <Typography variant="body2"

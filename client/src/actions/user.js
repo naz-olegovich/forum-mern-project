@@ -43,6 +43,9 @@ export const auth = () => async (dispatch) => {
         dispatch(showLoader());
         const { data } = await axios.get('/api/auth/auth');
         dispatch(setUserAction(data.user));
+
+    } catch (e) {
+        console.log(e);
     } finally {
         dispatch(hideLoader());
     }
@@ -53,6 +56,8 @@ export const logout = () => async (dispatch) => {
         dispatch(showLoader());
         await axios.post('/api/auth/logout');
         dispatch(logoutAction());
+    } catch (e) {
+        console.log(e);
     } finally {
         dispatch(hideLoader());
     }
