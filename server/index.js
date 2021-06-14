@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const config = require('config');
 const authRouter = require('./routes/authRouter.js');
 const topicRouter = require('./routes/topicsRouter');
@@ -11,6 +12,9 @@ const app = express();
 const PORT = process.env.PORT || config.get('serverPort');
 
 app.use(cors());
+app.use(cookieParser());
+
+
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 

@@ -1,4 +1,4 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     paper: {
@@ -21,9 +21,8 @@ export default makeStyles((theme) => ({
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(2),
     },
-    NewCommentInput:{
-        borderRadius:'15px',
-        width:'70%',
+    NewCommentInput: {
+        borderRadius: '15px',
+        width: '70%',
     }
-
 }));

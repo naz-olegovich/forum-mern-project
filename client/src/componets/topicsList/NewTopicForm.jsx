@@ -1,33 +1,32 @@
-import React, {useRef, useState} from 'react';
-import {Backdrop, Button, Container, Fade, Grid, Modal, Paper, Typography, Fab} from '@material-ui/core';
+import React, { useRef, useState } from 'react';
+import { Backdrop, Button, Container, Grid, Modal, Paper, Typography, Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Input from '../utils/input/Input';
-import {useDispatch} from 'react-redux';
-import {createTopic} from '../../actions/topics';
+import { useDispatch } from 'react-redux';
+import { createTopic } from '../../actions/topics';
 import useStyles from './styles';
-import JoditEditor from "jodit-react";
+import JoditEditor from 'jodit-react';
 
 const NewTopicForm = () => {
     const formRef = useRef();
     const dispatch = useDispatch();
     const classes = useStyles();
-    const editor = useRef(null)
+    const editor = useRef(null);
 
     const initialState = { title: '', description: '', text: '' };
     const [open, setOpen] = React.useState(false);
     const [form, setForm] = useState(initialState);
     const config = {
-        placeholder:'Content',
+        placeholder: 'Content',
         processPasteHTML: false,
         spellcheck: false,
-        toolbarButtonSize: "small",
+        toolbarButtonSize: 'small',
         toolbarAdaptive: false,
         askBeforePasteHTML: false,
         askBeforePasteFromWord: false,
-        // defaultActionOnPaste: "insert_as_text",
-        buttons: "bold,italic,underline,strikethrough,superscript," +
-            "subscript,|,ul,ol,|,indent,outdent,left,font,fontsize,paragraph,|"
-    }
+        buttons: 'bold,italic,underline,strikethrough,superscript,' +
+            'subscript,|,ul,ol,|,indent,outdent,left,font,fontsize,paragraph,|'
+    };
 
     const handleOpen = () => {
         setOpen(true);
@@ -50,8 +49,6 @@ const NewTopicForm = () => {
         dispatch(createTopic(form));
         setOpen(false);
     };
-    const [content, setContent] = useState('')
-
 
     return (
         <div>
@@ -69,7 +66,6 @@ const NewTopicForm = () => {
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{ timeout: 500, }}>
-
                 <Container component="main" maxWidth="md" style={{ outline: 'none' }}>
                     <Paper className={classes.paper}>
                         <Typography component="h1" variant="h5" className={classes.title}>Discussion
@@ -78,26 +74,25 @@ const NewTopicForm = () => {
                             <Grid container spacing={2}>
 
                                 <Input name="title" label="Tittle" type="text" autoComplete={'off'}
-                                       handleChange={handleChange}/>
+                                    handleChange={handleChange}/>
                                 <Input name="description" label="Description" type="text" autoComplete={'off'}
-                                       multiline={true} required={false} handleChange={handleChange}/>
+                                    multiline={true} required={false} handleChange={handleChange}/>
                                 <div style={{ width: '100%', padding: 8 }} className=':root'>
                                     <JoditEditor
                                         ref={editor}
                                         placeholder="qqq"
                                         value={form.text}
                                         config={config}
-                                        tabIndex={1} // tabIndex of textarea
-                                        onBlur={newContent => setForm({
+                                        tabIndex={1}
+                                        onBlur={(newContent) => setForm({
                                             ...form,
                                             text: newContent
-                                        })} // preferred to use only this option to update the content for performance reasons
-                                        // onChange={newContent => setForm({ ...form, text: newContent })}
+                                        })}
                                     />
                                 </div>
                             </Grid>
                             <Button onClick={handleSubmit} type="submit" fullWidth
-                                    variant="contained" color="primary" className={classes.submit}>
+                                variant="contained" color="primary" className={classes.submit}>
                                 Create discussion
                             </Button>
                         </form>

@@ -1,4 +1,4 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     card: {
@@ -13,11 +13,11 @@ export default makeStyles((theme) => ({
     title: {
         textDecoration: 'none',
         color: '#d2601a',
-        fontWeight: "bold",
+        fontWeight: 'bold',
         overflowWrap: 'break-word'
     },
     description: {
-        fontSize: "bold"
+        fontSize: 'bold'
 
     },
     greenBackground: {

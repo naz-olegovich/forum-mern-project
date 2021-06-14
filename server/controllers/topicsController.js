@@ -31,6 +31,7 @@ class TopicsController {
             const { id } = req.params;
             const topic = await Topic.findOne({ _id: id });
             const comments = await Comment.find({ topic: topic._id }).sort({ createdAt: -1 });
+
             return res.status(200).json({
                 ...topic._doc,
                 comments
@@ -40,7 +41,6 @@ class TopicsController {
             return res.status(500).json({ message: 'Can not get necessary topic' });
         }
     }
-
 
     async createTopic(req, res) {
         try {

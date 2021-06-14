@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {Container, Grid} from '@material-ui/core';
-import {Pagination, PaginationItem} from '@material-ui/lab';
+import React, { useState, useEffect } from 'react';
+import { Container, Grid } from '@material-ui/core';
+import { Pagination, PaginationItem } from '@material-ui/lab';
 import useStyles from './styles';
-import {Link, useLocation} from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);

@@ -1,19 +1,18 @@
 import axios from 'axios';
-import { setUser } from '../reducers/userReducer';
+import { setUserAction, logoutAction } from '../reducers/userReducer';
 import { hideLoader, showLoader } from '../reducers/appReducer';
 
 
 export const registration = (formData) => async (dispatch) => {
     const { username, email, password } = formData;
     try {
-        const response = await axios.post('http://localhost:5000/api/auth/registration', {
+        const response = await axios.post('api/auth/registration', {
             username,
             email,
             password,
         });
 
-        dispatch(setUser(response.data.user));
-        localStorage.setItem('token', response.data.token);
+        dispatch(setUserAction(response.data.user));
     } catch (e) {
         const errors = e?.response?.data?.errors?.errors;
         let message = e.response.data.message + '\n';
@@ -29,12 +28,11 @@ export const registration = (formData) => async (dispatch) => {
 export const login = (formData) => async (dispatch) => {
     const { email, password } = formData;
     try {
-        const response = await axios.post('http://localhost:5000/api/auth/login', {
+        const response = await axios.post('/api/auth/login', {
             email,
             password
         });
-        dispatch(setUser(response.data.user));
-        localStorage.setItem('token', response.data.token);
+        dispatch(setUserAction(response.data.user));
     } catch (e) {
         alert(e.response.data.message);
     }
@@ -43,13 +41,18 @@ export const login = (formData) => async (dispatch) => {
 export const auth = () => async (dispatch) => {
     try {
         dispatch(showLoader());
-        const response = await axios.get('http://localhost:5000/api/auth/auth',
-            { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-        );
-        dispatch(setUser(response.data.user));
-        localStorage.setItem('token', response.data.token);
-    } catch (e) {
-        localStorage.removeItem('token');
+        const { data } = await axios.get('/api/auth/auth');
+        dispatch(setUserAction(data.user));
+    } finally {
+        dispatch(hideLoader());
+    }
+};
+
+export const logout = () => async (dispatch) => {
+    try {
+        dispatch(showLoader());
+        await axios.post('/api/auth/logout');
+        dispatch(logoutAction());
     } finally {
         dispatch(hideLoader());
     }

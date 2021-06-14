@@ -1,8 +1,8 @@
-import {makeStyles} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 export default makeStyles((theme) => ({
     appBar: {
-        borderRadius: "0 0 15px 15px",
+        borderRadius: '0 0 15px 15px',
         width: '96%',
         margin: 'auto',
         display: 'flex',
@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
         textDecoration: 'none',
         color: '#d2601a',
         flexGrow: 1,
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: 23
     },
     logo: {
@@ -31,7 +31,7 @@ export default makeStyles((theme) => ({
     username: {
         display: 'inline-block',
         marginRight: theme.spacing(2),
-        color:'aqua'
+        color: 'aqua'
     },
     menuBar: {
 

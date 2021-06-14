@@ -1,9 +1,9 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import Comment from './comment/Comment';
 import useStyles from './styles';
-import {TextField, Typography} from '@material-ui/core';
-import {useDispatch} from 'react-redux';
-import {createComment} from '../../actions/topics';
+import { TextField, Typography } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { createComment } from '../../actions/topics';
 import Pagination from '../utils/pagination/Pagination';
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
@@ -33,14 +33,14 @@ const Comments = ({ topicId, comments }) => {
         <IconButton type='submit' onClick={handleSubmit}>
             <SendIcon color='primary'/>
         </IconButton>
-    )
+    );
 
     return (
         <div>
 
-                <Typography variant='h6' color="textSecondary">
-                    {comments?.length ? 'Comments:' : 'No comments yet'}
-                </Typography>
+            <Typography variant='h6' color="textSecondary">
+                {comments?.length ? 'Comments:' : 'No comments yet'}
+            </Typography>
 
             <form className={classes.form} ref={formRef}>
                 <TextField

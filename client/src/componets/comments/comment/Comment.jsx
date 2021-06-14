@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Paper, Typography} from '@material-ui/core';
+import { Grid, Paper, Typography } from '@material-ui/core';
 import useStyles from './styles';
 
 
@@ -17,7 +17,9 @@ const Comment = (props) => {
             <Grid container wrap="nowrap" spacing={2} zeroMinWidth>
                 <Grid justifyContent="left" item xs zeroMinWidth>
                     <div className={classes.inline}>
-                        <Typography style={{ fontWeight: 'bold' }} className={classes.username}>{comment.username}</Typography>
+                        <Typography style={{ fontWeight: 'bold' }} className={classes.username}>
+                            {comment.username}
+                        </Typography>
                         <Typography variant='body2' className={classes.date}>
                             {formatDate(comment.createdAt)}
                         </Typography>
@@ -25,7 +27,6 @@ const Comment = (props) => {
                     <Typography variant='body1' className={classes.text}>
                         {comment.text}
                     </Typography>
-
                 </Grid>
             </Grid>
         </Paper>

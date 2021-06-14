@@ -1,4 +1,4 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
 
@@ -10,9 +10,9 @@ export default makeStyles((theme) => ({
     },
     fabBtn: {
         backgroundColor: '#d2601a',
-        background: "#f1f1f1",
+        background: '#f1f1f1',
         '&:hover': {
-            background: "#E6742E",
+            background: '#E6742E',
         },
     },
     modal: {

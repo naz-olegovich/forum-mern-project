@@ -1,8 +1,8 @@
 import React from 'react';
-import {AppBar, Button, Typography} from '@material-ui/core';
-import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {logout} from '../../reducers/userReducer';
+import { AppBar, Button, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../actions/user';
 import useStyles from './style';
 
 

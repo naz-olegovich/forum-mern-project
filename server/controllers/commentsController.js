@@ -20,7 +20,6 @@ class CommentsController {
             });
             await comment.save();
 
-
             currentTopic.comments.push(comment._id);
             await currentTopic.save();
 
@@ -30,21 +29,6 @@ class CommentsController {
             return res.status(400).json({ message: e.message });
         }
     }
-
-/*
-    async deleteTopic(req, res) {
-        try {
-            const { id } = req.params;
-            if (!mongoose.Types.ObjectId.isValid(id)) {
-                return res.status(404).send(`No topic with id: ${id}`)
-            }
-            await Topic.findByIdAndRemove(id)
-            return res.json({ message: "Post deleted successfully." });
-        } catch (e) {
-            console.log(e)
-        }
-    }
-    */
 }
 
 module.exports = new CommentsController();

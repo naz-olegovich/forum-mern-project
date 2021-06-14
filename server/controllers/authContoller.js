@@ -26,9 +26,8 @@ class AuthController {
             await user.save();
 
             const token = jwt.sign({ id: user.id }, config.get('secretKey'), { expiresIn: '24h' });
-
+            res.cookie('token', token, { httpOnly: true });
             return res.json({
-                token,
                 user: {
                     id: user.id,
                     email: user.email,
@@ -57,9 +56,8 @@ class AuthController {
             }
 
             const token = jwt.sign({ id: user.id }, config.get('secretKey'), { expiresIn: '24h' });
-
+            res.cookie('token', token, { httpOnly: true });
             return res.json({
-                token,
                 user: {
                     id: user.id,
                     email: user.email,
@@ -77,9 +75,8 @@ class AuthController {
         try {
             const user = await User.findOne({ _id: req.user.id });
             const token = jwt.sign({ id: user.id }, config.get('secretKey'), { expiresIn: '24h' });
-
+            res.cookie('token', token, { httpOnly: true });
             return res.json({
-                token,
                 user: {
                     id: user.id,
                     email: user.email,
@@ -90,6 +87,15 @@ class AuthController {
         } catch (e) {
             console.log(e);
             res.send({ message: 'Server error' });
+        }
+    }
+
+    async logout(req, res) {
+        try {
+            res.clearCookie('token');
+            res.send({ message: 'Access token was deleted' });
+        } catch (e) {
+            console.log(e);
         }
     }
 }

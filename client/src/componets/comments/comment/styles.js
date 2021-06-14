@@ -1,12 +1,11 @@
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     paper: {
         padding: '15px 10px',
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(2),
-        width: '90%'
-
+        width: '90%',
     },
     username: {
         display: 'inline',
@@ -16,24 +15,21 @@ export default makeStyles((theme) => ({
 
     },
     text: {
-        padding: theme.spacing(1)
+        padding: theme.spacing(1),
     },
     date: {
         display: 'inline',
         color: 'gray',
-        marginLeft: theme.spacing(2)
+        marginLeft: theme.spacing(2),
 
     },
     inline: {
         display: 'inline-block',
         width: '100%',
     },
-
     comments: {
         borderRadius: 15,
         marginBottom: theme.spacing(1),
         padding: '8px 10px 10px 20px',
-
-
     }
 }));
